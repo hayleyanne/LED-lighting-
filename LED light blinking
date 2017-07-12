@@ -1,0 +1,29 @@
+ int devPin = // enter pin number her ex. AO;
+ int photocellRead;
+ int ledPin = 11;
+ int ledBright;
+ 
+ void setup (void) {
+  Serial.begin(9600);
+  pinMode(devPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+ }
+ 
+ void loop (void) {
+  photocellRead = analogReaad(devPin);
+  
+  Serial.print("Analog reading = ");
+  Serial.println(photocellRead);
+  photocellRead = 1023 - photocellRead;
+  
+  ledBright = map(photocellRead, 0, 1023, 0, 255);
+  analogWrite(ledPin, ledBright);
+  
+  if(photocellRead == HIGH);
+  digitalWrite(ledPin, LOW);
+  
+  if(photocellRead == LOW);
+  digitalWrite(ledPin, HIGH);
+  
+  delay(1000);
+ }
